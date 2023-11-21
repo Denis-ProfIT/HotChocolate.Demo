@@ -1,0 +1,38 @@
+schema {
+    query: UserQuery
+}
+
+directive @tag(
+    name: String!
+) repeatable on SCHEMA | SCALAR | OBJECT | FIELD_DEFINITION | ARGUMENT_DEFINITION | INTERFACE | UNION | ENUM | ENUM_VALUE | INPUT_OBJECT | INPUT_FIELD_DEFINITION
+
+type UserQuery {
+    users(where: UserFilterInput): [User!]!
+}
+
+input UserFilterInput {
+    and: [UserFilterInput!]
+    or: [UserFilterInput!]
+    name: StringOperationFilterInput
+    address: StringOperationFilterInput
+}
+
+input StringOperationFilterInput {
+    and: [StringOperationFilterInput!]
+    or: [StringOperationFilterInput!]
+    eq: String
+    neq: String
+    contains: String
+    ncontains: String
+    in: [String]
+    nin: [String]
+    startsWith: String
+    nstartsWith: String
+    endsWith: String
+    nendsWith: String
+}
+
+type User {
+    name: String!
+    address: String
+}

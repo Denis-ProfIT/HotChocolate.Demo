@@ -1,0 +1,6 @@
+query GetUsers($filter: UserFilterInput) {
+    users (where: $filter) {
+        name
+        address
+    }
+}
